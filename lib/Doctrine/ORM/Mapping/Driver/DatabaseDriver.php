@@ -216,6 +216,11 @@ class DatabaseDriver implements MappingDriver
                 $associationMapping['fieldName'] = $this->getFieldNameForColumn($manyTable->getName(), current($otherFk->getColumns()), true);
                 $associationMapping['targetEntity'] = $this->getClassNameForTable($otherFk->getForeignTableName());
 
+                if (isset($metadata->fieldMappings[$associationMapping['fieldName']])
+                || isset($metadata->associationMappings[$associationMapping['fieldName']])) {
+                    $associationMapping['fieldName'] .= '2'; // "foo" => "foo2"
+                }
+
                 if (current($manyTable->getColumns())->getName() == $localColumn) {
                     $associationMapping['inversedBy'] = $this->getFieldNameForColumn($manyTable->getName(), current($myFk->getColumns()), true);
                     $associationMapping['joinTable'] = array(
