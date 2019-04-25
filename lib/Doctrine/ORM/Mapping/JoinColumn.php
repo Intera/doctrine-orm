@@ -51,6 +51,11 @@ final class JoinColumn implements Annotation
     public $onDelete;
 
     /**
+     * @var mixed
+     */
+    public $onUpdate;
+
+    /**
      * @var string
      */
     public $columnDefinition;

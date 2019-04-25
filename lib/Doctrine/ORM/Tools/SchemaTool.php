@@ -682,6 +682,10 @@ class SchemaTool
             if (isset($joinColumn['onDelete'])) {
                 $fkOptions['onDelete'] = $joinColumn['onDelete'];
             }
+
+            if (isset($joinColumn['onUpdate'])) {
+                $fkOptions['onUpdate'] = $joinColumn['onUpdate'];
+            }
         }
 
         // Prefer unique constraints over implicit simple indexes created for foreign keys.

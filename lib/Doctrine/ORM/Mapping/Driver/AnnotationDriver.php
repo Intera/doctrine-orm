@@ -579,6 +579,7 @@ class AnnotationDriver extends AbstractAnnotationDriver
             'unique' => $joinColumn->unique,
             'nullable' => $joinColumn->nullable,
             'onDelete' => $joinColumn->onDelete,
+            'onUpdate' => $joinColumn->onUpdate,
             'columnDefinition' => $joinColumn->columnDefinition,
             'referencedColumnName' => $joinColumn->referencedColumnName,
         );
