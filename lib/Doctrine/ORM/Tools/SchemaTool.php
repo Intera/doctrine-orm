@@ -673,6 +673,10 @@ class SchemaTool
                     $columnOptions['precision'] = $fieldMapping['precision'];
                 }
 
+                if (!empty($joinColumn['columnOptions'])) {
+                    $columnOptions = array_merge($columnOptions, $joinColumn['columnOptions']);
+                }
+
                 $theJoinTable->addColumn($quotedColumnName, $fieldMapping['type'], $columnOptions);
             }
 

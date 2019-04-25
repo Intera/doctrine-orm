@@ -574,7 +574,7 @@ class AnnotationDriver extends AbstractAnnotationDriver
      */
     private function joinColumnToArray(JoinColumn $joinColumn)
     {
-        return array(
+        $mapping = array(
             'name' => $joinColumn->name,
             'unique' => $joinColumn->unique,
             'nullable' => $joinColumn->nullable,
@@ -583,6 +583,12 @@ class AnnotationDriver extends AbstractAnnotationDriver
             'columnDefinition' => $joinColumn->columnDefinition,
             'referencedColumnName' => $joinColumn->referencedColumnName,
         );
+
+        if ($joinColumn->columnOptions) {
+            $mapping['columnOptions'] = $joinColumn->columnOptions;
+        }
+
+        return $mapping;
     }
 
     /**

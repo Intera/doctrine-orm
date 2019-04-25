@@ -71,4 +71,9 @@ final class JoinColumn implements Annotation
      * @var string
      */
     public $fieldName;
+
+    /**
+     * @var array
+     */
+    public $columnOptions;
 }
