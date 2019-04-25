@@ -615,6 +615,7 @@ class SchemaTool
         $fkOptions          = array();
         $foreignTableName   = $this->quoteStrategy->getTableName($class, $this->platform);
         $uniqueConstraints  = array();
+        $constraintName     = null;
 
         foreach ($joinColumns as $joinColumn) {
 
@@ -686,6 +687,10 @@ class SchemaTool
             if (isset($joinColumn['onUpdate'])) {
                 $fkOptions['onUpdate'] = $joinColumn['onUpdate'];
             }
+
+            if (isset($joinColumn['constraintName'])) {
+                $constraintName = $joinColumn['constraintName'];
+            }
         }
 
         // Prefer unique constraints over implicit simple indexes created for foreign keys.
@@ -711,11 +716,12 @@ class SchemaTool
             $blacklistedFks[$compositeName] = true;
         } elseif (!isset($blacklistedFks[$compositeName])) {
             $addedFks[$compositeName] = array('foreignTableName' => $foreignTableName, 'foreignColumns' => $foreignColumns);
-            $theJoinTable->addUnnamedForeignKeyConstraint(
+            $theJoinTable->addForeignKeyConstraint(
                 $foreignTableName,
                 $localColumns,
                 $foreignColumns,
-                $fkOptions
+                $fkOptions,
+                $constraintName
             );
         }
     }

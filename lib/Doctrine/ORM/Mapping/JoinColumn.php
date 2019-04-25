@@ -33,6 +33,11 @@ final class JoinColumn implements Annotation
     /**
      * @var string
      */
+    public $constraintName;
+
+    /**
+     * @var string
+     */
     public $referencedColumnName = 'id';
 
     /**
